@@ -1,5 +1,5 @@
 import { Environment, OrbitControls } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { FC, Suspense, useContext, useState } from 'react';
 
 import { bodyColors } from 'assets/cars';
@@ -10,6 +10,7 @@ import {
   ResponsiveCamera,
 } from 'components';
 import { context } from '../Context';
+import { TextureLoader } from 'three';
 
 export const CarConfiguratorPage: FC = () => {
   const contextValues = useContext(context);
@@ -24,6 +25,18 @@ export const CarConfiguratorPage: FC = () => {
 
   const ModelFile = contextValues.activeCar?.modelTsx;
 
+  const FlatSurface = () => {
+    const texture = useLoader(TextureLoader, '/concrete-texture.jpg');
+
+    return (
+      <mesh position={[0, -3.3, 0]}>
+        <cylinderGeometry args={[11.5, 11.5, 0.75, 32, 32]} />
+        {/* Radius: 5, Height: 0.5, Segments: 32 */}
+        <meshStandardMaterial color="lightgray" map={texture} />
+      </mesh>
+    );
+  };
+
   return (
     <>
       <Header />
@@ -37,6 +50,7 @@ export const CarConfiguratorPage: FC = () => {
           <CameraAnimation setControlsEnabled={setControlsEnabled} />
           <Suspense fallback={null}>
             {ModelFile ? <ModelFile color={activeBodyColor} /> : null}
+            <FlatSurface />
           </Suspense>
           <OrbitControls
             autoRotate
