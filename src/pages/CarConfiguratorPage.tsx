@@ -4,7 +4,7 @@ import { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { TextureLoader } from 'three';
 
-import { brakeCaliperColors } from 'assets/cars';
+import { brakeCaliperColors, seatColors, wheelColors } from 'assets/cars';
 import {
   CameraAnimation,
   ConfigPalette,
@@ -15,11 +15,18 @@ import { useAppSelector } from 'store';
 import {
   setActiveBodyColor,
   setActiveBrakeCaliperColor,
+  setActiveSeatColor,
+  setActiveWheelColor,
 } from 'store/selections';
 
 export const CarConfiguratorPage: FC = () => {
-  const { activeBodyColor, activeCar, activeBrakeCaliperColor } =
-    useAppSelector(({ selectionsSlice }) => selectionsSlice);
+  const {
+    activeBodyColor,
+    activeCar,
+    activeBrakeCaliperColor,
+    activeSeatColor,
+    activeWheelColor,
+  } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const { canRotate, controlsEnabled } = useAppSelector(
     ({ controlsSlice }) => controlsSlice
   );
@@ -32,6 +39,14 @@ export const CarConfiguratorPage: FC = () => {
 
     if (!activeBrakeCaliperColor) {
       dispatch(setActiveBrakeCaliperColor(brakeCaliperColors[0]));
+    }
+
+    if (!activeSeatColor) {
+      dispatch(setActiveSeatColor(seatColors[0]));
+    }
+
+    if (!activeWheelColor) {
+      dispatch(setActiveWheelColor(wheelColors[0]));
     }
   }, [activeBodyColor, activeCar, activeBrakeCaliperColor]);
 
@@ -64,6 +79,8 @@ export const CarConfiguratorPage: FC = () => {
               <ModelFile
                 color={activeBodyColor}
                 brakeCaliperColor={activeBrakeCaliperColor}
+                seatColor={activeSeatColor}
+                wheelColor={activeWheelColor}
               />
             ) : null}
             <FlatSurface />

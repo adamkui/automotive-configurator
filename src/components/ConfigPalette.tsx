@@ -2,24 +2,38 @@ import classNames from 'classnames';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { bodyColors, brakeCaliperColors } from 'assets/cars';
+import {
+  bodyColors,
+  brakeCaliperColors,
+  seatColors,
+  wheelColors,
+} from 'assets/cars';
 import { CarColor } from 'models';
 import { useAppSelector } from 'store';
 import {
   setActiveBodyColor,
   setActiveBrakeCaliperColor,
+  setActiveSeatColor,
+  setActiveWheelColor,
 } from 'store/selections';
 import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
 
 export const ConfigPalette: FC = () => {
   const dispatch = useDispatch();
-  const { activeCar, activeBodyColor, activeBrakeCaliperColor } =
-    useAppSelector(({ selectionsSlice }) => selectionsSlice);
+  const {
+    activeCar,
+    activeBodyColor,
+    activeBrakeCaliperColor,
+    activeSeatColor,
+    activeWheelColor,
+  } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>();
 
   const options: { label: string }[] = [
     { label: 'MORE INFORMATION' },
     { label: 'BODY COLOR' },
+    { label: 'RIM COLOR' },
+    { label: 'INTERIOR COLOR' },
     { label: 'BRAKE CALIPER COLOR' },
   ];
 
@@ -28,19 +42,17 @@ export const ConfigPalette: FC = () => {
   };
 
   const renderOptions = () => {
-    if (activeTabIndex === 0) {
-      return renderMoreInformation();
-    }
+    const renderFunctions: Record<number, () => JSX.Element | null> = {
+      0: renderMoreInformation,
+      1: renderBodyColorOptions,
+      2: renderWheelColorOptions,
+      3: renderSeatColorOptions,
+      4: renderBrakeCaliperColorOptions,
+    };
 
-    if (activeTabIndex === 1) {
-      return renderBodyColorOptions();
-    }
-
-    if (activeTabIndex === 2) {
-      return renderBrakeCaliperColorOptions();
-    }
-
-    return null;
+    return activeTabIndex === undefined
+      ? null
+      : renderFunctions[activeTabIndex]?.();
   };
 
   const renderMoreInformation = () => {
@@ -106,6 +118,44 @@ export const ConfigPalette: FC = () => {
               })}
               style={{ background: hexCode }}
               onClick={() => dispatch(setActiveBrakeCaliperColor(hexCode))}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderSeatColorOptions = () => {
+    return (
+      <div className="config-options">
+        {seatColors.map((hexCode) => {
+          return (
+            <button
+              key={hexCode}
+              className={classNames('config-option', {
+                active: hexCode === activeSeatColor,
+              })}
+              style={{ background: hexCode }}
+              onClick={() => dispatch(setActiveSeatColor(hexCode))}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderWheelColorOptions = () => {
+    return (
+      <div className="config-options">
+        {wheelColors.map((hexCode) => {
+          return (
+            <button
+              key={hexCode}
+              className={classNames('config-option', {
+                active: hexCode === activeWheelColor,
+              })}
+              style={{ background: hexCode }}
+              onClick={() => dispatch(setActiveWheelColor(hexCode))}
             />
           );
         })}

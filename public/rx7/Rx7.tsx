@@ -22,6 +22,13 @@ export default function Model(props) {
   // Brake calipers color
   materials.material_13.color = new THREE.Color(props.brakeCaliperColor);
 
+  // Seat colors
+  materials.material_26.color = new THREE.Color(props.seatColor);
+  materials.material_27.color = new THREE.Color(props.seatColor);
+
+  // Wheel color
+  materials.material_16.color = new THREE.Color(props.wheelColor);
+
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>

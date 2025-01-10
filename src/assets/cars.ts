@@ -47,3 +47,13 @@ export const cars: Car[] = [
 export const bodyColors = ['red', 'blue', 'green', 'yellow'];
 
 export const brakeCaliperColors = ['#FF0000', '#FFFF00', '#000000', '#0000FF'];
+
+export const seatColors = ['#000000', '#d0b090', '#a14844'];
+
+export const wheelColors = [
+  '#A7A7A7', // Silver
+  '#FFFFFF', // White
+  '#000000', // Matte Black
+  '#2A3439', // Gunmetal
+  '#8C6A4D', // Bronze
+];

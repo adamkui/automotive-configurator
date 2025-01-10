@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Routes, useLocation, useNavigate } from 'react-router';
 
 import { cars } from 'assets/cars';
 import { CarConfiguratorPage } from 'pages/CarConfiguratorPage';
 import { HomePage } from 'pages/HomePage';
-import store, { useAppSelector } from 'store';
+import { useAppSelector } from 'store';
 import { setActiveCar } from 'store/selections';
 import { getCarPathname } from 'utils';
 
