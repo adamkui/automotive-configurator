@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { useNavigate } from "react-router";
 
-import { cars } from "assets/constants";
+import { cars } from "assets/cars";
 import { Car } from "models";
 import { getCarPathname } from "utils";
 import { context } from "../Context";

@@ -1,15 +1,15 @@
-import { Environment, OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { FC, Suspense, useContext, useState } from "react";
+import { Environment, OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { FC, Suspense, useContext, useState } from 'react';
 
-import { bodyColors } from "assets/constants";
+import { bodyColors } from 'assets/cars';
 import {
   CameraAnimation,
   ConfigPalette,
   Header,
   ResponsiveCamera,
-} from "components";
-import { context } from "../Context";
+} from 'components';
+import { context } from '../Context';
 
 export const CarConfiguratorPage: FC = () => {
   const contextValues = useContext(context);
@@ -17,7 +17,7 @@ export const CarConfiguratorPage: FC = () => {
 
   const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
   const [activeBodyColor, setActiveBodyColor] = useState<string | undefined>(
-    bodyColors[0],
+    bodyColors[0]
   );
 
   if (!contextValues) return null;
@@ -29,7 +29,7 @@ export const CarConfiguratorPage: FC = () => {
       <Header />
       <Suspense fallback={null}>
         <Canvas
-          camera={{ position: [30, 9.5, 34], fov: 20 }}
+          // camera={{ position: [30, 9.5, 34], fov: 20 }}
           className="canvas"
         >
           <Environment preset="warehouse" />

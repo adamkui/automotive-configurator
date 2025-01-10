@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router";
 
 import { context } from "./Context";
-import { Car, cars } from "assets/constants";
+import { Car, cars } from "assets/cars";
 import { CarConfiguratorPage } from "pages/CarConfiguratorPage";
 import { HomePage } from "pages/HomePage";
 import { getCarPathname } from "utils";
