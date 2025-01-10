@@ -66,7 +66,7 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
                   <div key={key}>
                     <p>
                       <b>{`${camelCaseToFormatted(key)}: `}</b>
-                      {`${value}`}
+                      <i>{`${value}`}</i>
                     </p>
                   </div>
                 );

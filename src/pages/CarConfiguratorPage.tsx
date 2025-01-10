@@ -3,6 +3,7 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { FC, Suspense, useContext, useEffect, useState } from 'react';
 import { TextureLoader } from 'three';
 
+import { brakeCaliperColors } from 'assets/cars';
 import {
   CameraAnimation,
   ConfigPalette,
@@ -17,14 +18,22 @@ export const CarConfiguratorPage: FC = () => {
 
   if (!contextValues) return null;
 
-  const { activeBodyColor, setActiveBodyColor, activeBrakeCaliperColor } =
-    contextValues;
+  const {
+    activeBodyColor,
+    setActiveBodyColor,
+    activeBrakeCaliperColor,
+    setActiveBrakeCaliperColor,
+  } = contextValues;
 
   const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
 
   useEffect(() => {
     if (!activeBodyColor && contextValues.activeCar?.colors?.[0].hexCode) {
       setActiveBodyColor(contextValues.activeCar.colors[0].hexCode);
+    }
+
+    if (!activeBrakeCaliperColor) {
+      setActiveBrakeCaliperColor(brakeCaliperColors[0]);
     }
   }, [activeBodyColor, contextValues]);
 
