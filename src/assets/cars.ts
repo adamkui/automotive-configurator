@@ -38,7 +38,17 @@ export const cars: Car[] = [
       predecessor: 'Mazda RX-7 (FC)',
       successor: 'None',
     },
-    colors: ['#000000', '#D92A2A', '#F5F5F5', '#9B1B30', '#1C3A5D'],
+    colors: [
+      '#000000',
+      '#D92A2A',
+      '#F5F5F5',
+      '#9B1B30',
+      '#1C3A5D',
+      '#FFB800',
+      '#4C5C4F',
+      '#FFDD44',
+      '#636363',
+    ],
   },
   {
     name: 'Mclaren P1',
