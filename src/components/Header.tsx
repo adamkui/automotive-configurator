@@ -1,13 +1,17 @@
-import { FC, useContext } from "react";
+import { FC, useContext } from 'react';
 
-import { context } from "../Context";
+import { context } from '../Context';
 
 export const Header: FC = () => {
   const contextValues = useContext(context);
 
   if (!contextValues) return null;
 
-  const { activeCar } = contextValues;
+  const { activeCar, activeBodyColor } = contextValues;
+
+  const colorName =
+    activeCar?.colors?.find(({ hexCode }) => hexCode === activeBodyColor)
+      ?.name || '';
 
   return (
     <header className="header">
@@ -16,7 +20,10 @@ export const Header: FC = () => {
         alt={`${activeCar?.name}-brand-logo`}
         className="header-brand-logo"
       />
-      <h1 className="header-carname">{activeCar?.name}</h1>
+      <div className="header-car">
+        <h1>{activeCar?.name}</h1>
+        <h5>{colorName}</h5>
+      </div>
     </header>
   );
 };

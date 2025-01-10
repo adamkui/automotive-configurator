@@ -4,7 +4,7 @@ export type Car = {
   brandLogoSrc: string;
   modelTsx: (props: any) => JSX.Element;
   moreInformation?: MoreInformation;
-  colors?: string[];
+  colors?: CarColor[];
 };
 
 export type MoreInformation = {
@@ -26,4 +26,9 @@ export type MoreInformation = {
   kerbWeight: string;
   predecessor: string;
   successor: string;
+};
+
+export type CarColor = {
+  name: string;
+  hexCode: string;
 };

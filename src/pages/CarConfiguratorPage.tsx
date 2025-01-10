@@ -1,8 +1,8 @@
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { FC, Suspense, useContext, useState } from 'react';
+import { FC, Suspense, useContext, useEffect, useState } from 'react';
+import { TextureLoader } from 'three';
 
-import { bodyColors } from 'assets/cars';
 import {
   CameraAnimation,
   ConfigPalette,
@@ -10,18 +10,22 @@ import {
   ResponsiveCamera,
 } from 'components';
 import { context } from '../Context';
-import { TextureLoader } from 'three';
 
 export const CarConfiguratorPage: FC = () => {
   const contextValues = useContext(context);
   const carWidth = 4;
 
-  const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
-  const [activeBodyColor, setActiveBodyColor] = useState<string | undefined>(
-    bodyColors[0]
-  );
-
   if (!contextValues) return null;
+
+  const { activeBodyColor, setActiveBodyColor } = contextValues;
+
+  const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!activeBodyColor && contextValues.activeCar?.colors?.[0].hexCode) {
+      setActiveBodyColor(contextValues.activeCar.colors[0].hexCode);
+    }
+  }, [activeBodyColor, contextValues]);
 
   const ModelFile = contextValues.activeCar?.modelTsx;
 

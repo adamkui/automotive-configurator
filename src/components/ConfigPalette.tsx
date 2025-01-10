@@ -4,6 +4,7 @@ import { Dispatch, FC, SetStateAction, useContext, useState } from 'react';
 import { bodyColors } from 'assets/cars';
 import { context } from 'Context';
 import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
+import { CarColor } from 'models';
 
 interface ConfigPaletteProps {
   setActiveBodyColor: Dispatch<SetStateAction<string | undefined>>;
@@ -67,17 +68,17 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
   };
 
   const renderBodyColorOptions = () => {
-    const colors: string[] = contextValues?.activeCar?.colors || bodyColors;
+    const colors: CarColor[] = contextValues?.activeCar?.colors || bodyColors;
 
     return (
       <div className="config-options">
-        {colors.map((color) => {
+        {colors.map(({ name, hexCode }) => {
           return (
             <button
-              key={color}
+              key={name}
               className="config-option"
-              style={{ background: color }}
-              onClick={() => setActiveBodyColor(color)}
+              style={{ background: hexCode }}
+              onClick={() => setActiveBodyColor(hexCode)}
             />
           );
         })}

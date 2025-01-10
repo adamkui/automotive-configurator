@@ -103,6 +103,20 @@ body {
   height: 50px;
 }
 
+.header-car {
+  text-align: center;
+  margin: 16px;
+
+  h1,
+  h5 {
+    margin: 0;
+  }
+
+  h5 {
+    color: $blue9;
+  }
+}
+
 .config-palette {
   display: flex;
   flex-direction: column;
