@@ -1,28 +1,21 @@
 import classNames from 'classnames';
-import { Dispatch, FC, SetStateAction, useContext, useState } from 'react';
+import { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { bodyColors, brakeCaliperColors } from 'assets/cars';
-import { context } from 'Context';
-import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
 import { CarColor } from 'models';
-
-interface ConfigPaletteProps {
-  setActiveBodyColor: Dispatch<SetStateAction<string | undefined>>;
-}
-
-export const ConfigPalette: FC<ConfigPaletteProps> = ({
+import { useAppSelector } from 'store';
+import {
   setActiveBodyColor,
-}) => {
-  const contextValues = useContext(context);
+  setActiveBrakeCaliperColor,
+} from 'store/selections';
+import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
+
+export const ConfigPalette: FC = () => {
+  const dispatch = useDispatch();
+  const { activeCar, activeBodyColor, activeBrakeCaliperColor } =
+    useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>();
-
-  if (!contextValues) return null;
-
-  const {
-    activeBodyColor,
-    activeBrakeCaliperColor,
-    setActiveBrakeCaliperColor,
-  } = contextValues;
 
   const options: { label: string }[] = [
     { label: 'MORE INFORMATION' },
@@ -51,7 +44,7 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
   };
 
   const renderMoreInformation = () => {
-    const moreInformation = contextValues.activeCar?.moreInformation || {};
+    const moreInformation = activeCar?.moreInformation || {};
 
     return (
       <div className="more-information">
@@ -81,8 +74,7 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
 
   const renderBodyColorOptions = () => {
     const colors: CarColor[] =
-      contextValues?.activeCar?.colors ||
-      bodyColors.map((hexCode) => ({ hexCode, name: '' }));
+      activeCar?.colors || bodyColors.map((hexCode) => ({ hexCode, name: '' }));
 
     return (
       <div className="config-options">
@@ -94,7 +86,7 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
                 active: hexCode === activeBodyColor,
               })}
               style={{ background: hexCode }}
-              onClick={() => setActiveBodyColor(hexCode)}
+              onClick={() => dispatch(setActiveBodyColor(hexCode))}
             />
           );
         })}
@@ -113,7 +105,7 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
                 active: hexCode === activeBrakeCaliperColor,
               })}
               style={{ background: hexCode }}
-              onClick={() => setActiveBrakeCaliperColor(hexCode)}
+              onClick={() => dispatch(setActiveBrakeCaliperColor(hexCode))}
             />
           );
         })}

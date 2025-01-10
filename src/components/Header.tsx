@@ -1,21 +1,18 @@
-import { Dispatch, FC, SetStateAction, useContext } from 'react';
-import { IoArrowBack, IoPlayCircle, IoPauseSharp } from 'react-icons/io5';
+import { FC } from 'react';
+import { IoArrowBack, IoPauseSharp, IoPlayCircle } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { context } from '../Context';
+import { useAppSelector } from 'store';
+import { setRotate } from 'store/controls';
 
-interface HeaderProps {
-  canRotate: boolean;
-  setRotate: Dispatch<SetStateAction<boolean>>;
-}
-
-export const Header: FC<HeaderProps> = ({ canRotate, setRotate }) => {
+export const Header: FC = () => {
   const navigate = useNavigate();
-  const contextValues = useContext(context);
-
-  if (!contextValues) return null;
-
-  const { activeCar, activeBodyColor } = contextValues;
+  const dispatch = useDispatch();
+  const { activeCar, activeBodyColor } = useAppSelector(
+    ({ selectionsSlice }) => selectionsSlice
+  );
+  const { canRotate } = useAppSelector(({ controlsSlice }) => controlsSlice);
 
   const colorName =
     activeCar?.colors?.find(({ hexCode }) => hexCode === activeBodyColor)
@@ -37,7 +34,10 @@ export const Header: FC<HeaderProps> = ({ canRotate, setRotate }) => {
           <h5>{colorName}</h5>
         </div>
       </div>
-      <div className="header-right" onClick={() => setRotate(!canRotate)}>
+      <div
+        className="header-right"
+        onClick={() => dispatch(setRotate(!canRotate))}
+      >
         {canRotate ? (
           <IoPauseSharp size={32} className="icon" />
         ) : (

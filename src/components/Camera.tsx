@@ -1,16 +1,12 @@
-import { Size, useFrame, useThree } from "@react-three/fiber";
-import { Dispatch, useEffect, useRef, useState } from "react";
-import * as THREE from "three";
+import { Size, useFrame, useThree } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setControlsEnabled } from 'store/controls';
+import * as THREE from 'three';
 
-interface ResponsiveCameraProps {
-  targetWidth: number;
-}
+export const ResponsiveCamera = () => {
+  const targetWidth = 4;
 
-interface CameraAnimationProps {
-  setControlsEnabled: Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const ResponsiveCamera = ({ targetWidth }: ResponsiveCameraProps) => {
   const { camera, size }: { camera: THREE.PerspectiveCamera; size: Size } =
     useThree();
 
@@ -33,9 +29,8 @@ export const ResponsiveCamera = ({ targetWidth }: ResponsiveCameraProps) => {
   return null; // Ez a komponens nem renderel semmit, csak frissíti a kamerát
 };
 
-export const CameraAnimation = ({
-  setControlsEnabled,
-}: CameraAnimationProps) => {
+export const CameraAnimation = () => {
+  const dispatch = useDispatch();
   const { camera }: { camera: THREE.PerspectiveCamera } = useThree();
   const targetFov = 10;
   const targetPosition = [30, 9.5, 34];
@@ -55,7 +50,7 @@ export const CameraAnimation = ({
     camera.position.set(
       targetPosition[0] * easeT + 30 * (1 - easeT), // Kezdeti pozíció: [30, 9.5, 34]
       targetPosition[1] * easeT + 9.5 * (1 - easeT),
-      targetPosition[2] * easeT + 34 * (1 - easeT),
+      targetPosition[2] * easeT + 34 * (1 - easeT)
     );
 
     // Fov interpoláció
@@ -65,12 +60,12 @@ export const CameraAnimation = ({
     if (t >= 1) {
       setIsAnimating(false); // Animáció vége
       // Az OrbitControls pozíciójának beállítása a kamera aktuális állapotára
-      setControlsEnabled(true); // Engedélyezd az OrbitControls-t
+      dispatch(setControlsEnabled(true)); // Engedélyezd az OrbitControls-t
     }
   });
 
   useEffect(() => {
-    setControlsEnabled(false); // Letiltjuk az OrbitControls-t az animáció elején
+    dispatch(setControlsEnabled(false)); // Letiltjuk az OrbitControls-t az animáció elején
   }, [setControlsEnabled]);
 
   return null;

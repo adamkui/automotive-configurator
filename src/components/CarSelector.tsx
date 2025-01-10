@@ -1,21 +1,18 @@
-import { FC, useContext } from "react";
-import { useNavigate } from "react-router";
+import { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
-import { cars } from "assets/cars";
-import { Car } from "models";
-import { getCarPathname } from "utils";
-import { context } from "../Context";
+import { cars } from 'assets/cars';
+import { Car } from 'models';
+import { setActiveCar } from 'store/selections';
+import { getCarPathname } from 'utils';
 
 export const CarSelector: FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const contextValues = useContext(context);
-
-  if (!contextValues) return null;
-
-  const { setActiveCar } = contextValues;
 
   const selectCar = (car: Car) => {
-    setActiveCar(car);
+    dispatch(setActiveCar(car));
     navigate(getCarPathname(car.name));
   };
 
