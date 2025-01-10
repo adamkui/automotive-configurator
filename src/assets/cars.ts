@@ -34,9 +34,9 @@ export const cars: Car[] = [
       successor: 'None',
     },
     colors: [
+      { name: 'Vintage Red', hexCode: '#BD0000' },
       { name: 'Competition Yellow mica', hexCode: '#fbe03c' },
       { name: 'Montego Blue', hexCode: '#445055' },
-      { name: 'Vintage Red', hexCode: '#BD0000' },
       { name: 'Brilliant Black', hexCode: '#0f0f0f' },
       { name: 'Silver Stone', hexCode: '#ceced4' },
       { name: 'Crystal White', hexCode: '#fbfcfa' },
