@@ -2,12 +2,7 @@ import classNames from 'classnames';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import {
-  bodyColors,
-  brakeCaliperColors,
-  seatColors,
-  wheelColors,
-} from 'assets/cars';
+import { brakeCaliperColors, seatColors, wheelColors } from 'assets/cars';
 import { CarColor } from 'models';
 import { useAppSelector } from 'store';
 import {
@@ -27,7 +22,7 @@ export const ConfigPalette: FC = () => {
     activeSeatColor,
     activeWheelColor,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
-  const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>();
+  const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>(1);
 
   const options: { label: string }[] = [
     { label: 'MORE INFORMATION' },
@@ -85,8 +80,7 @@ export const ConfigPalette: FC = () => {
   };
 
   const renderBodyColorOptions = () => {
-    const colors: CarColor[] =
-      activeCar?.colors || bodyColors.map((hexCode) => ({ hexCode, name: '' }));
+    const colors: CarColor[] = activeCar?.colors ?? [];
 
     return (
       <div className="config-options">
