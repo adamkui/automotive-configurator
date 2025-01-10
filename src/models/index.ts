@@ -1,3 +1,5 @@
+import { Vector3 } from '@react-three/fiber';
+
 export type Car = {
   name: string;
   imageSrc: string;
@@ -5,6 +7,7 @@ export type Car = {
   modelTsx: (props: any) => JSX.Element;
   moreInformation?: MoreInformation;
   colors?: CarColor[];
+  annotations?: AnnotationData[];
 };
 
 export type MoreInformation = {
@@ -31,4 +34,11 @@ export type MoreInformation = {
 export type CarColor = {
   name: string;
   hexCode: string;
+};
+
+export type AnnotationData = {
+  index: number;
+  label: string;
+  description: string;
+  position: { x: number; y: number; z: number };
 };

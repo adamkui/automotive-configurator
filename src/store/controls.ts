@@ -3,13 +3,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface ControlsState {
   controlsEnabled: boolean;
   canRotate: boolean;
+  showAnnotations: boolean;
+  activeAnnotationIndex: number;
 }
 
 const controlsSlice = createSlice({
   name: 'controls',
   initialState: {
-    canRotate: true,
+    canRotate: false,
     controlsEnabled: true,
+    showAnnotations: false,
+    activeAnnotationIndex: 1,
   } as ControlsState,
   reducers: {
     setControlsEnabled: (state, action: PayloadAction<boolean>) => {
@@ -18,11 +22,40 @@ const controlsSlice = createSlice({
     setRotate: (state, action: PayloadAction<boolean>) => {
       state.canRotate = action.payload;
     },
+    toggleRotation: (state) => {
+      state.canRotate = !state.canRotate;
+    },
+    toggleAnnotations: (state) => {
+      if (!state.showAnnotations && state.canRotate) {
+        state.canRotate = false;
+      }
+      state.showAnnotations = !state.showAnnotations;
+    },
+    setActiveAnnotationIndex: (state, action: PayloadAction<number>) => {
+      state.activeAnnotationIndex = action.payload;
+    },
+    previousAnnotation: (state) => {
+      state.activeAnnotationIndex = Math.max(
+        state.activeAnnotationIndex - 1,
+        1
+      );
+    },
+    nextAnnotation: (state) => {
+      state.activeAnnotationIndex = state.activeAnnotationIndex + 1;
+    },
   },
 });
 
 const { reducer, actions } = controlsSlice;
 
-export const { setControlsEnabled, setRotate } = actions;
+export const {
+  setControlsEnabled,
+  setRotate,
+  toggleRotation,
+  toggleAnnotations,
+  setActiveAnnotationIndex,
+  previousAnnotation,
+  nextAnnotation,
+} = actions;
 
 export default reducer;

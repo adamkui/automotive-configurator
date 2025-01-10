@@ -13,6 +13,9 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
+import { Annotation } from 'components';
+import { AnnotationData as AnnotationModel } from 'models';
+
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/rx7/rx7.gltf');
 
@@ -156,6 +159,9 @@ export default function Model(props) {
           geometry={nodes.Object_67.geometry}
           material={materials.material_30}
         />
+        {props.annotations.map((props, index) => {
+          return <Annotation key={index} {...props} />;
+        })}
       </group>
     </group>
   );

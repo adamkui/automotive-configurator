@@ -82,6 +82,7 @@ export const CarConfiguratorPage: FC = () => {
                 brakeCaliperColor={activeBrakeCaliperColor}
                 seatColor={activeSeatColor}
                 wheelColor={activeWheelColor}
+                annotations={activeCar.annotations}
               />
             ) : null}
             <FlatSurface />

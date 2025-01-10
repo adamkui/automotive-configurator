@@ -41,6 +41,22 @@ export const cars: Car[] = [
       { name: 'Silver Stone', hexCode: '#ceced4' },
       { name: 'Crystal White', hexCode: '#fbfcfa' },
     ],
+    annotations: [
+      {
+        index: 1,
+        position: { x: 3.1, y: -4.8125, z: -1 },
+        label: 'Enkei wheels',
+        description:
+          'This will be a longer text. Lorem ipsum asdjkanb asjdn jk a sjkdnjknm, asj sjkldnjk jkn sdjjlsd .',
+      },
+      {
+        index: 2,
+        position: { x: 0, y: 0, z: 0 },
+        label: 'Engine',
+        description:
+          'This will be a longer text. Lorem ipsum asdjkanb asjdn jk a sjkdnjknm, asj sjkldnjk jkn sdjjlsd .',
+      },
+    ],
   },
 ];
 
