@@ -7,4 +7,6 @@ export const context = createContext<{
   setActiveCar: Dispatch<SetStateAction<Car | undefined>>;
   activeBodyColor: string | undefined;
   setActiveBodyColor: Dispatch<SetStateAction<string | undefined>>;
+  activeBrakeCaliperColor: string | undefined;
+  setActiveBrakeCaliperColor: Dispatch<SetStateAction<string | undefined>>;
 } | null>(null);

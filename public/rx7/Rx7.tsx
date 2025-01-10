@@ -9,14 +9,18 @@ Source: https://sketchfab.com/3d-models/mazda-rx-7-1992-wwwvecarzcom-4a7d2c43737
 Title: Mazda RX-7 1992 | www.vecarz.com
 */
 
-import React from "react";
-import { useGLTF } from "@react-three/drei";
-import * as THREE from "three";
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
+import * as THREE from 'three';
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF("/rx7/rx7.gltf");
+  const { nodes, materials } = useGLTF('/rx7/rx7.gltf');
 
+  // Body color
   materials.material_0.color = new THREE.Color(props.color);
+
+  // Brake calipers color
+  materials.material_13.color = new THREE.Color(props.brakeCaliperColor);
 
   return (
     <group {...props} dispose={null}>
@@ -150,4 +154,4 @@ export default function Model(props) {
   );
 }
 
-useGLTF.preload("/rx7/rx7.gltf");
+useGLTF.preload('/rx7/rx7.gltf');

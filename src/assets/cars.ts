@@ -2,15 +2,10 @@ import { Car } from 'models';
 
 // Brand logos
 import mazdaLogo from '/brands/mazda.png';
-import mclaren from '/brands/mclaren.png';
 
 // Mazda RX-7 1992
-import rx7Image from '/rx7/rx7.jpg';
 import rx7Model from '../../public/rx7/rx7';
-
-// Mclaren P1
-import p1Image from '/p1/p1.jpg';
-import p1Model from '../../public/p1/p1';
+import rx7Image from '/rx7/rx7.jpg';
 
 export const cars: Car[] = [
   {
@@ -47,12 +42,8 @@ export const cars: Car[] = [
       { name: 'Crystal White', hexCode: '#fbfcfa' },
     ],
   },
-  {
-    name: 'Mclaren P1',
-    imageSrc: p1Image,
-    brandLogoSrc: mclaren,
-    modelTsx: p1Model,
-  },
 ];
 
 export const bodyColors = ['red', 'blue', 'green', 'yellow'];
+
+export const brakeCaliperColors = ['#FF0000', '#FFFF00', '#000000', '#0000FF'];

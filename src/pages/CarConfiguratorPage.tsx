@@ -17,7 +17,8 @@ export const CarConfiguratorPage: FC = () => {
 
   if (!contextValues) return null;
 
-  const { activeBodyColor, setActiveBodyColor } = contextValues;
+  const { activeBodyColor, setActiveBodyColor, activeBrakeCaliperColor } =
+    contextValues;
 
   const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
 
@@ -53,7 +54,12 @@ export const CarConfiguratorPage: FC = () => {
           <ResponsiveCamera targetWidth={carWidth} />
           <CameraAnimation setControlsEnabled={setControlsEnabled} />
           <Suspense fallback={null}>
-            {ModelFile ? <ModelFile color={activeBodyColor} /> : null}
+            {ModelFile ? (
+              <ModelFile
+                color={activeBodyColor}
+                brakeCaliperColor={activeBrakeCaliperColor}
+              />
+            ) : null}
             <FlatSurface />
           </Suspense>
           <OrbitControls

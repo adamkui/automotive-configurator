@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Dispatch, FC, SetStateAction, useContext, useState } from 'react';
 
-import { bodyColors } from 'assets/cars';
+import { bodyColors, brakeCaliperColors } from 'assets/cars';
 import { context } from 'Context';
 import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
 import { CarColor } from 'models';
@@ -16,10 +16,18 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
   const contextValues = useContext(context);
   const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>();
 
+  if (!contextValues) return null;
+
+  const {
+    activeBodyColor,
+    activeBrakeCaliperColor,
+    setActiveBrakeCaliperColor,
+  } = contextValues;
+
   const options: { label: string }[] = [
     { label: 'MORE INFORMATION' },
     { label: 'BODY COLOR' },
-    { label: 'WHEEL COLOR' },
+    { label: 'BRAKE CALIPER COLOR' },
   ];
 
   const onTabClick = (index: number) => {
@@ -35,11 +43,15 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
       return renderBodyColorOptions();
     }
 
+    if (activeTabIndex === 2) {
+      return renderBrakeCaliperColorOptions();
+    }
+
     return null;
   };
 
   const renderMoreInformation = () => {
-    const moreInformation = contextValues?.activeCar?.moreInformation || {};
+    const moreInformation = contextValues.activeCar?.moreInformation || {};
 
     return (
       <div className="more-information">
@@ -68,7 +80,9 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
   };
 
   const renderBodyColorOptions = () => {
-    const colors: CarColor[] = contextValues?.activeCar?.colors || bodyColors;
+    const colors: CarColor[] =
+      contextValues?.activeCar?.colors ||
+      bodyColors.map((hexCode) => ({ hexCode, name: '' }));
 
     return (
       <div className="config-options">
@@ -76,9 +90,30 @@ export const ConfigPalette: FC<ConfigPaletteProps> = ({
           return (
             <button
               key={name}
-              className="config-option"
+              className={classNames('config-option', {
+                active: hexCode === activeBodyColor,
+              })}
               style={{ background: hexCode }}
               onClick={() => setActiveBodyColor(hexCode)}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderBrakeCaliperColorOptions = () => {
+    return (
+      <div className="config-options">
+        {brakeCaliperColors.map((hexCode) => {
+          return (
+            <button
+              key={hexCode}
+              className={classNames('config-option', {
+                active: hexCode === activeBrakeCaliperColor,
+              })}
+              style={{ background: hexCode }}
+              onClick={() => setActiveBrakeCaliperColor(hexCode)}
             />
           );
         })}

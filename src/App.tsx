@@ -13,6 +13,9 @@ function App() {
   const navigate = useNavigate();
   const [activeCar, setActiveCar] = useState<Car | undefined>();
   const [activeBodyColor, setActiveBodyColor] = useState<string | undefined>();
+  const [activeBrakeCaliperColor, setActiveBrakeCaliperColor] = useState<
+    string | undefined
+  >();
 
   useEffect(() => {
     if (pathname && !activeCar) {
@@ -30,7 +33,14 @@ function App() {
 
   return (
     <context.Provider
-      value={{ activeCar, setActiveCar, activeBodyColor, setActiveBodyColor }}
+      value={{
+        activeCar,
+        setActiveCar,
+        activeBodyColor,
+        setActiveBodyColor,
+        activeBrakeCaliperColor,
+        setActiveBrakeCaliperColor,
+      }}
     >
       <Routes>
         <Route path="/" element={<HomePage />} />
