@@ -4,7 +4,7 @@ import { Car } from 'models';
 import mazdaLogo from '/brands/mazda.png';
 
 // Mazda RX-7 1992
-import rx7Model from 'assets/Rx7';
+import rx7Model from 'assets/rx7/rx7';
 import rx7Image from '/rx7/rx7.jpg';
 
 export const cars: Car[] = [
