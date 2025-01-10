@@ -26,6 +26,7 @@ export const CarConfiguratorPage: FC = () => {
   } = contextValues;
 
   const [controlsEnabled, setControlsEnabled] = useState<boolean>(true);
+  const [canRotate, setRotate] = useState<boolean>(true);
 
   useEffect(() => {
     if (!activeBodyColor && contextValues.activeCar?.colors?.[0].hexCode) {
@@ -53,10 +54,10 @@ export const CarConfiguratorPage: FC = () => {
 
   return (
     <>
-      <Header />
+      <Header canRotate={canRotate} setRotate={setRotate} />
       <Suspense fallback={null}>
         <Canvas
-          // camera={{ position: [30, 9.5, 34], fov: 20 }}
+          camera={{ position: [30, 9.5, 34], fov: 20 }}
           className="canvas"
         >
           <Environment preset="warehouse" />
@@ -72,7 +73,7 @@ export const CarConfiguratorPage: FC = () => {
             <FlatSurface />
           </Suspense>
           <OrbitControls
-            autoRotate
+            autoRotate={canRotate}
             autoRotateSpeed={0.33}
             enableDamping
             dampingFactor={0.1}

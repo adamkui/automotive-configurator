@@ -23,6 +23,7 @@ $bg-gradient: linear-gradient(
 
 $bg-card: rgba(0, 0, 0, 0.5);
 
+html,
 body {
   margin: 0px;
   overflow: hidden;
@@ -30,8 +31,8 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: $blue10;
   background: $bg-gradient;
-  min-width: 100vw;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .home-page {
@@ -88,15 +89,40 @@ body {
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
+  max-width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   font-style: italic;
   background: transparent;
   z-index: 1;
+  padding: 0px 16px;
+  box-sizing: border-box;
+
+  .icon {
+    cursor: pointer;
+  }
+}
+
+.header-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-right {
+  cursor: pointer;
+  background-color: rgba($blue4, 0.5);
+  padding: 16px 32px;
+  border-radius: 16px;
+
+  svg {
+    transform: translateY(1px);
+  }
 }
 
 .header-brand-logo {
