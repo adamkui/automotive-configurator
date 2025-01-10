@@ -40,9 +40,6 @@ const controlsSlice = createSlice({
         1
       );
     },
-    nextAnnotation: (state) => {
-      state.activeAnnotationIndex = state.activeAnnotationIndex + 1;
-    },
   },
 });
 
@@ -55,7 +52,6 @@ export const {
   toggleAnnotations,
   setActiveAnnotationIndex,
   previousAnnotation,
-  nextAnnotation,
 } = actions;
 
 export default reducer;

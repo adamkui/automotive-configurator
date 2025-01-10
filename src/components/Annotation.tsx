@@ -1,7 +1,9 @@
 import { Html } from '@react-three/drei';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from 'store';
+import { setActiveAnnotationIndex } from 'store/controls';
 import { Vector3 } from 'three';
 
 interface AnnotationProps {
@@ -17,6 +19,7 @@ export const Annotation = ({
   label,
   position,
 }: AnnotationProps) => {
+  const dispatch = useDispatch();
   const { showAnnotations, activeAnnotationIndex } = useAppSelector(
     ({ controlsSlice }) => controlsSlice
   );
@@ -30,13 +33,13 @@ export const Annotation = ({
   }, [showAnnotations]);
 
   useEffect(() => {
-    if (activeAnnotationIndex === index && !isOpen) {
-      setOpen(true);
+    if (activeAnnotationIndex !== index && isOpen) {
+      setOpen(false);
       return;
     }
 
-    if (activeAnnotationIndex !== index && isOpen) {
-      setOpen(false);
+    if (activeAnnotationIndex === index) {
+      setOpen(true);
     }
   }, [activeAnnotationIndex]);
 
@@ -45,14 +48,15 @@ export const Annotation = ({
       return;
     }
 
+    if (activeAnnotationIndex !== index) {
+      dispatch(setActiveAnnotationIndex(index));
+    }
+
     setOpen(!isOpen);
   };
 
   return (
-    <Html
-      position={new Vector3(position.x, position.y, position.z)}
-      distanceFactor={10}
-    >
+    <Html position={new Vector3(position.x, position.y, position.z)}>
       {showAnnotations ? (
         <div className="annotation">
           <button className="annotation-circle" onClick={toggleAnnotation}>

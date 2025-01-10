@@ -3,7 +3,7 @@ import { IoCaretBackOutline, IoCaretForwardOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from 'store';
-import { nextAnnotation, previousAnnotation } from 'store/controls';
+import { previousAnnotation, setActiveAnnotationIndex } from 'store/controls';
 
 export const AnnotationsStepper: FC = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const AnnotationsStepper: FC = () => {
     ({ controlsSlice }) => controlsSlice
   );
 
-  if (!showAnnotations) return null;
+  if (!showAnnotations || !activeCar?.annotations?.length) return null;
 
   return (
     <div className="annotations-stepper-wrapper">
@@ -25,11 +25,20 @@ export const AnnotationsStepper: FC = () => {
           className="icon"
           onClick={() => dispatch(previousAnnotation())}
         />
-        <h3>{`${activeAnnotationIndex} ${activeCar?.annotations?.[activeAnnotationIndex - 1]?.label ?? ''}`}</h3>
+        <h3>{`${activeAnnotationIndex} ${activeCar.annotations[activeAnnotationIndex - 1]?.label ?? ''}`}</h3>
         <IoCaretForwardOutline
           size={32}
           className="icon"
-          onClick={() => dispatch(nextAnnotation())}
+          onClick={() =>
+            dispatch(
+              setActiveAnnotationIndex(
+                Math.min(
+                  activeCar.annotations!.length,
+                  activeAnnotationIndex + 1
+                )
+              )
+            )
+          }
         />
       </div>
     </div>
