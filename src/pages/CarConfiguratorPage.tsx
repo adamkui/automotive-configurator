@@ -18,6 +18,7 @@ import {
   setActiveSeatColor,
   setActiveWheelColor,
 } from 'store/selections';
+import concreteTexture from 'assets/concrete-texture.jpg';
 
 export const CarConfiguratorPage: FC = () => {
   const {
@@ -53,7 +54,7 @@ export const CarConfiguratorPage: FC = () => {
   const ModelFile = activeCar?.modelTsx;
 
   const FlatSurface = () => {
-    const texture = useLoader(TextureLoader, '/concrete-texture.jpg');
+    const texture = useLoader(TextureLoader, concreteTexture);
 
     return (
       <mesh position={[0, -3.3, 0]}>
