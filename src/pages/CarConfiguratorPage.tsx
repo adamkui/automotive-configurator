@@ -57,8 +57,8 @@ export const CarConfiguratorPage: FC = () => {
     const texture = useLoader(TextureLoader, concreteTexture);
 
     return (
-      <mesh position={[0, -3.3, 0]}>
-        <cylinderGeometry args={[11.5, 11.5, 0.75, 32, 32]} />
+      <mesh position={[0, -3.05, 0]}>
+        <cylinderGeometry args={[10, 10, 0.25, 32, 32]} />
         <meshStandardMaterial color="lightgray" map={texture} />
       </mesh>
     );

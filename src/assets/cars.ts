@@ -69,5 +69,5 @@ export const wheelColors = [
   '#A7A7A7', // Silver
   '#2A3439', // Gunmetal
   '#000000', // Matte Black
-  '#8C6A4D', // Bronze
+  '#b08d57', // Bronze
 ];
