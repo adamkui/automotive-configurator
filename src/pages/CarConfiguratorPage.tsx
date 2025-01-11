@@ -15,6 +15,7 @@ import {
   CameraAnimation,
   ConfigPalette,
   Header,
+  Legal,
   ResponsiveCamera,
 } from 'components';
 import { useAppSelector } from 'store';
@@ -111,6 +112,7 @@ export const CarConfiguratorPage: FC = () => {
         </Canvas>
       </Suspense>
       <ConfigPalette />
+      <Legal />
     </>
   );
 };

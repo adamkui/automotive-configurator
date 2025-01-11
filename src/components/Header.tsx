@@ -6,6 +6,7 @@ import { IoMdClose } from 'react-icons/io';
 import {
   IoArrowBack,
   IoInformationCircleSharp,
+  IoLogoGithub,
   IoPauseSharp,
   IoPlayCircle,
 } from 'react-icons/io5';
@@ -121,6 +122,17 @@ export const Header: FC = () => {
           ) : (
             <HiAnnotation size={32} className="icon" onClick={setAnnotations} />
           )}
+          <IoLogoGithub
+            size={28}
+            className="icon"
+            onClick={() =>
+              window.open(
+                'https://github.com/adamkui/automotive-configurator',
+                '_blank',
+                'noopener,noreferrer'
+              )
+            }
+          />
         </div>
         <AnnotationsStepper />
         {renderMoreInformation()}

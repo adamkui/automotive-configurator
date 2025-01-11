@@ -336,3 +336,18 @@ body {
   margin-bottom: 4px;
   width: 200px;
 }
+
+.legal {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+
+  a {
+    &:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
