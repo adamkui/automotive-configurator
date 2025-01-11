@@ -1,13 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 import controlsSlice from './controls';
 import selectionsSlice from './selections';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const reducer = combineReducers({ controlsSlice, selectionsSlice });
 
 const store = configureStore({
   reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export default store;
