@@ -76,14 +76,14 @@ export const Header: FC = () => {
   return (
     <>
       <header className="header">
-        <div>
+        <div className="header-part">
           <IoArrowBack
             size={28}
             className="icon"
             onClick={() => navigate('/')}
           />
         </div>
-        <div className="header-center">
+        <div className="header-center header-part">
           <img
             src={activeCar?.brandLogoSrc}
             alt={`${activeCar?.name}-brand-logo`}
@@ -94,45 +94,55 @@ export const Header: FC = () => {
             <h4>{colorName}</h4>
           </div>
         </div>
-        <div className="header-right">
-          {canRotate ? (
-            <IoPauseSharp size={32} className="icon" onClick={setRotation} />
-          ) : (
-            <IoPlayCircle
-              size={32}
-              className={classNames('icon', { disabled: showAnnotations })}
-              onClick={setRotation}
-            />
-          )}
-          {showMoreInformation ? (
-            <IoMdClose
-              size={32}
+        <div className="header-right header-part">
+          <div className="header-right-box">
+            {canRotate ? (
+              <IoPauseSharp size={32} className="icon" onClick={setRotation} />
+            ) : (
+              <IoPlayCircle
+                size={32}
+                className={classNames('icon', { disabled: showAnnotations })}
+                onClick={setRotation}
+              />
+            )}
+            {showMoreInformation ? (
+              <IoMdClose
+                size={32}
+                className="icon"
+                onClick={() => setShowMoreInformation(!showMoreInformation)}
+              />
+            ) : (
+              <IoInformationCircleSharp
+                size={32}
+                className="icon"
+                onClick={() => setShowMoreInformation(!showMoreInformation)}
+              />
+            )}
+            {showAnnotations ? (
+              <BiSolidHide
+                size={32}
+                className="icon"
+                onClick={setAnnotations}
+              />
+            ) : (
+              <HiAnnotation
+                size={32}
+                className="icon"
+                onClick={setAnnotations}
+              />
+            )}
+            <IoLogoGithub
+              size={28}
               className="icon"
-              onClick={() => setShowMoreInformation(!showMoreInformation)}
+              onClick={() =>
+                window.open(
+                  'https://github.com/adamkui/automotive-configurator',
+                  '_blank',
+                  'noopener,noreferrer'
+                )
+              }
             />
-          ) : (
-            <IoInformationCircleSharp
-              size={32}
-              className="icon"
-              onClick={() => setShowMoreInformation(!showMoreInformation)}
-            />
-          )}
-          {showAnnotations ? (
-            <BiSolidHide size={32} className="icon" onClick={setAnnotations} />
-          ) : (
-            <HiAnnotation size={32} className="icon" onClick={setAnnotations} />
-          )}
-          <IoLogoGithub
-            size={28}
-            className="icon"
-            onClick={() =>
-              window.open(
-                'https://github.com/adamkui/automotive-configurator',
-                '_blank',
-                'noopener,noreferrer'
-              )
-            }
-          />
+          </div>
         </div>
         <AnnotationsStepper />
         {renderMoreInformation()}
