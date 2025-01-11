@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 import { BiSolidHide } from 'react-icons/bi';
 import { HiAnnotation } from 'react-icons/hi';
@@ -56,7 +57,11 @@ export const Header: FC = () => {
           {canRotate ? (
             <IoPauseSharp size={32} className="icon" onClick={setRotation} />
           ) : (
-            <IoPlayCircle size={32} className="icon" onClick={setRotation} />
+            <IoPlayCircle
+              size={32}
+              className={classNames('icon', { disabled: showAnnotations })}
+              onClick={setRotation}
+            />
           )}
           {showAnnotations ? (
             <BiSolidHide size={32} className="icon" onClick={setAnnotations} />

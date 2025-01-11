@@ -23,6 +23,7 @@ const controlsSlice = createSlice({
       state.canRotate = action.payload;
     },
     toggleRotation: (state) => {
+      if (state.showAnnotations) return;
       state.canRotate = !state.canRotate;
     },
     toggleAnnotations: (state) => {
