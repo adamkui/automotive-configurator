@@ -25,7 +25,7 @@ export const AnnotationsStepper: FC = () => {
           className="icon"
           onClick={() => dispatch(previousAnnotation())}
         />
-        <h3>{`${activeAnnotationIndex} ${activeCar.annotations[activeAnnotationIndex - 1]?.label ?? ''}`}</h3>
+        <h3>{`${activeAnnotationIndex}. ${activeCar.annotations[activeAnnotationIndex - 1]?.label ?? ''}`}</h3>
         <IoCaretForwardOutline
           size={32}
           className="icon"

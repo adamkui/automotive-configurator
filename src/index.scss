@@ -303,6 +303,12 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   border: 1px solid $blue1;
   cursor: pointer;
+  transition: all 0.5s ease;
+
+  &.faded {
+    opacity: 0.35;
+    transition: all 0.5s ease;
+  }
 }
 
 .annotation-box {

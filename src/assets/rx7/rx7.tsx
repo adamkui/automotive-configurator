@@ -41,8 +41,21 @@ export default function Model(props) {
   // Windows
   materials.material_28.color = new THREE.Color(props.windowTint);
 
-  const wheelAnnotationPosition =
-    showAnnotations && activeAnnotationIndex === 1 ? [2, 0, 0] : [0, 0, 0];
+  const getWheelAnnotationPosition = () => {
+    if (!showAnnotations) {
+      return [0, 0, 0];
+    }
+
+    if (activeAnnotationIndex === 3) {
+      return [2, 0, 0];
+    }
+
+    if (activeAnnotationIndex === 4) {
+      return [1000, 0, 0];
+    }
+  };
+
+  const wheelAnnotationPosition = getWheelAnnotationPosition();
 
   console.log(wheelAnnotationPosition);
   return (

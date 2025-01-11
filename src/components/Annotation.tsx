@@ -1,5 +1,6 @@
 import { Html } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -86,7 +87,12 @@ export const Annotation = ({
       >
         {showAnnotations ? (
           <div className="annotation">
-            <button className="annotation-circle" onClick={toggleAnnotation}>
+            <button
+              className={classNames('annotation-circle', {
+                faded: index !== activeAnnotationIndex && showAnnotations,
+              })}
+              onClick={toggleAnnotation}
+            >
               {index}
             </button>
             {isOpen ? (
