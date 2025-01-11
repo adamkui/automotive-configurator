@@ -73,3 +73,13 @@ export const wheelColors = [
   '#000000', // Matte Black
   '#b08d57', // Bronze
 ];
+
+export const windowTintOptions = [
+  '#4B4B4B', // Charcoal
+  '#D3D3D3', // Light Smoke
+  '#A9A9A9', // Medium Smoke
+  '#808080', // Dark Smoke
+  '#000000', // Jet Black
+  '#8B6E4E', // Bronze
+  '#C0C0C0', // Mirror Silver
+];

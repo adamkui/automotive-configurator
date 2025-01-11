@@ -32,6 +32,9 @@ export default function Model(props) {
   // Wheel color
   materials.material_16.color = new THREE.Color(props.wheelColor);
 
+  // Windows
+  materials.material_28.color = new THREE.Color(props.windowTint);
+
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>

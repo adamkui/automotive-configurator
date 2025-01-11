@@ -4,7 +4,12 @@ import { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { TextureLoader } from 'three';
 
-import { brakeCaliperColors, seatColors, wheelColors } from 'assets/cars';
+import {
+  brakeCaliperColors,
+  seatColors,
+  wheelColors,
+  windowTintOptions,
+} from 'assets/cars';
 import concreteTexture from 'assets/concrete-texture.jpg';
 import {
   CameraAnimation,
@@ -18,6 +23,7 @@ import {
   setActiveBrakeCaliperColor,
   setActiveSeatColor,
   setActiveWheelColor,
+  setActiveWindowTint,
 } from 'store/selections';
 
 export const CarConfiguratorPage: FC = () => {
@@ -27,6 +33,7 @@ export const CarConfiguratorPage: FC = () => {
     activeBrakeCaliperColor,
     activeSeatColor,
     activeWheelColor,
+    activeWindowTint,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const { canRotate, controlsEnabled } = useAppSelector(
     ({ controlsSlice }) => controlsSlice
@@ -48,6 +55,10 @@ export const CarConfiguratorPage: FC = () => {
 
     if (!activeWheelColor) {
       dispatch(setActiveWheelColor(wheelColors[0]));
+    }
+
+    if (!activeWindowTint) {
+      dispatch(setActiveWindowTint(windowTintOptions[0]));
     }
   }, [activeBodyColor, activeCar, activeBrakeCaliperColor]);
 
@@ -83,6 +94,7 @@ export const CarConfiguratorPage: FC = () => {
                 seatColor={activeSeatColor}
                 wheelColor={activeWheelColor}
                 annotations={activeCar.annotations}
+                windowTint={activeWindowTint}
               />
             ) : null}
             <FlatSurface />

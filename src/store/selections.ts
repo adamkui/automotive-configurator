@@ -7,6 +7,7 @@ interface SelectionsState {
   activeBrakeCaliperColor: string | undefined;
   activeSeatColor: string | undefined;
   activeWheelColor: string | undefined;
+  activeWindowTint: string | undefined;
 }
 
 const selectionsSlice = createSlice({
@@ -17,6 +18,7 @@ const selectionsSlice = createSlice({
     activeBrakeCaliperColor: undefined,
     activeSeatColor: undefined,
     activeWheelColor: undefined,
+    activeWindowTint: undefined,
   } as SelectionsState,
   reducers: {
     setActiveCar: (state, action: PayloadAction<Car | undefined>) => {
@@ -37,6 +39,9 @@ const selectionsSlice = createSlice({
     setActiveWheelColor: (state, action: PayloadAction<string | undefined>) => {
       state.activeWheelColor = action.payload;
     },
+    setActiveWindowTint: (state, action: PayloadAction<string | undefined>) => {
+      state.activeWindowTint = action.payload;
+    },
   },
 });
 
@@ -48,6 +53,7 @@ export const {
   setActiveCar,
   setActiveSeatColor,
   setActiveWheelColor,
+  setActiveWindowTint,
 } = actions;
 
 export default reducer;

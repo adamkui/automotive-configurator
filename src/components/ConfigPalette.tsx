@@ -2,7 +2,12 @@ import classNames from 'classnames';
 import { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { brakeCaliperColors, seatColors, wheelColors } from 'assets/cars';
+import {
+  brakeCaliperColors,
+  seatColors,
+  wheelColors,
+  windowTintOptions,
+} from 'assets/cars';
 import { CarColor } from 'models';
 import { useAppSelector } from 'store';
 import {
@@ -10,6 +15,7 @@ import {
   setActiveBrakeCaliperColor,
   setActiveSeatColor,
   setActiveWheelColor,
+  setActiveWindowTint,
 } from 'store/selections';
 import { camelCaseToFormatted, chunkArrayByIndexes } from 'utils';
 
@@ -21,6 +27,7 @@ export const ConfigPalette: FC = () => {
     activeBrakeCaliperColor,
     activeSeatColor,
     activeWheelColor,
+    activeWindowTint,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>(1);
 
@@ -28,6 +35,7 @@ export const ConfigPalette: FC = () => {
     { label: 'MORE INFORMATION' },
     { label: 'BODY COLOR' },
     { label: 'RIM COLOR' },
+    { label: 'WINDOW TINT' },
     { label: 'INTERIOR COLOR' },
     { label: 'BRAKE CALIPER COLOR' },
   ];
@@ -41,8 +49,9 @@ export const ConfigPalette: FC = () => {
       0: renderMoreInformation,
       1: renderBodyColorOptions,
       2: renderWheelColorOptions,
-      3: renderSeatColorOptions,
-      4: renderBrakeCaliperColorOptions,
+      3: renderWindowTintOptions,
+      4: renderSeatColorOptions,
+      5: renderBrakeCaliperColorOptions,
     };
 
     return activeTabIndex === undefined
@@ -150,6 +159,25 @@ export const ConfigPalette: FC = () => {
               })}
               style={{ background: hexCode }}
               onClick={() => dispatch(setActiveWheelColor(hexCode))}
+            />
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderWindowTintOptions = () => {
+    return (
+      <div className="config-options">
+        {windowTintOptions.map((hexCode) => {
+          return (
+            <button
+              key={hexCode}
+              className={classNames('config-option', {
+                active: hexCode === activeWindowTint,
+              })}
+              style={{ background: hexCode }}
+              onClick={() => dispatch(setActiveWindowTint(hexCode))}
             />
           );
         })}
