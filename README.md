@@ -4,7 +4,7 @@ https://automotive-configurator.netlify.app/
 
 ![image](https://github.com/user-attachments/assets/87dc0818-6ed3-4c4d-9ed8-b7804f502b9c)
 
-![image](https://github.com/user-attachments/assets/b05b626f-229a-4752-af14-41ca1f99b452)
+![image](https://github.com/user-attachments/assets/ad38dfa7-b22b-4164-bde6-39696edd08ee)
 
 ![image](https://github.com/user-attachments/assets/55702613-4632-490f-8ae7-78f7d4b6bcb8)
 
