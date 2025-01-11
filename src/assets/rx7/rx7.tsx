@@ -23,8 +23,6 @@ export default function Model(props) {
     ({ controlsSlice }) => controlsSlice
   );
 
-  console.log(activeAnnotationIndex);
-
   // Body color
   materials.material_0.color = new THREE.Color(props.color);
 
@@ -57,7 +55,6 @@ export default function Model(props) {
 
   const wheelAnnotationPosition = getWheelAnnotationPosition();
 
-  console.log(wheelAnnotationPosition);
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
