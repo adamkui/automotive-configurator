@@ -10,7 +10,7 @@ interface ControlsState {
 const controlsSlice = createSlice({
   name: 'controls',
   initialState: {
-    canRotate: false,
+    canRotate: true,
     controlsEnabled: true,
     showAnnotations: false,
     activeAnnotationIndex: 1,

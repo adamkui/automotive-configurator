@@ -33,7 +33,7 @@ export const CameraAnimation = () => {
   const dispatch = useDispatch();
   const { camera }: { camera: THREE.PerspectiveCamera } = useThree();
   const targetFov = 20;
-  const targetPosition = [30, 9.5, 34];
+  const targetPosition = [35, 11.5, 34];
   const duration = 1.5; // Animáció időtartama másodpercben
   const animationRef = useRef(0);
   const [isAnimating, setIsAnimating] = useState(true);
@@ -48,13 +48,13 @@ export const CameraAnimation = () => {
 
     // Pozíció interpoláció
     camera.position.set(
-      targetPosition[0] * easeT + 30 * (1 - easeT), // Kezdeti pozíció: [30, 9.5, 34]
-      targetPosition[1] * easeT + 9.5 * (1 - easeT),
+      targetPosition[0] * easeT + 35 * (1 - easeT), // Kezdeti pozíció: [30, 9.5, 34]
+      targetPosition[1] * easeT + 11.5 * (1 - easeT),
       targetPosition[2] * easeT + 34 * (1 - easeT)
     );
 
     // Fov interpoláció
-    camera.fov = 25 * (1 - easeT) + targetFov * easeT; // Kezdeti fov: 10
+    camera.fov = 10 * (1 - easeT) + targetFov * easeT; // Kezdeti fov: 10
     camera.updateProjectionMatrix();
 
     if (t >= 1) {

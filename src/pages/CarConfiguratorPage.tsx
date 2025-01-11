@@ -69,7 +69,7 @@ export const CarConfiguratorPage: FC = () => {
       <Header />
       <Suspense fallback={null}>
         <Canvas
-          camera={{ position: [30, 9.5, 34], fov: 10 }}
+          camera={{ position: [35, 11.5, 34], fov: 10 }}
           className="canvas"
         >
           <Environment preset="warehouse" />
