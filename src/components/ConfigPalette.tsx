@@ -163,16 +163,18 @@ export const ConfigPalette: FC = () => {
   const renderRideHeightInput = () => {
     return (
       <div className="config-options">
+        <p>Lowest</p>
         <input
           type="range"
           min={-0.275}
           max={0}
-          step={0.05}
+          step={0.005}
           value={suspensionHeight}
           onChange={({ target }) =>
             dispatch(setSuspensionHeight(Number(target.value)))
           }
         />
+        <p>Highest</p>
       </div>
     );
   };

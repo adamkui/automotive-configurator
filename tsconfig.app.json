@@ -23,6 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "public/rx7/rx7.tsx"],
+  "include": ["src"],
   "exclude": ["./public/**/*"]
 }
