@@ -34,6 +34,7 @@ export const CarConfiguratorPage: FC = () => {
     activeSeatColor,
     activeWheelColor,
     activeWindowTint,
+    suspensionHeight,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const { canRotate, controlsEnabled } = useAppSelector(
     ({ controlsSlice }) => controlsSlice
@@ -95,6 +96,7 @@ export const CarConfiguratorPage: FC = () => {
                 wheelColor={activeWheelColor}
                 annotations={activeCar.annotations}
                 windowTint={activeWindowTint}
+                suspensionHeight={suspensionHeight}
               />
             ) : null}
             <FlatSurface />

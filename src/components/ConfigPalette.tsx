@@ -16,6 +16,7 @@ import {
   setActiveSeatColor,
   setActiveWheelColor,
   setActiveWindowTint,
+  setSuspensionHeight,
 } from 'store/selections';
 
 export const ConfigPalette: FC = () => {
@@ -27,6 +28,7 @@ export const ConfigPalette: FC = () => {
     activeSeatColor,
     activeWheelColor,
     activeWindowTint,
+    suspensionHeight,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
   const { showAnnotations } = useAppSelector(
     ({ controlsSlice }) => controlsSlice
@@ -39,6 +41,7 @@ export const ConfigPalette: FC = () => {
     { label: 'WINDOW TINT' },
     { label: 'INTERIOR COLOR' },
     { label: 'BRAKE CALIPER COLOR' },
+    { label: 'RIDE HEIGHT' },
   ];
 
   const onTabClick = (index: number) => {
@@ -52,6 +55,7 @@ export const ConfigPalette: FC = () => {
       2: renderWindowTintOptions,
       3: renderSeatColorOptions,
       4: renderBrakeCaliperColorOptions,
+      5: renderRideHeightInput,
     };
 
     return activeTabIndex === undefined
@@ -152,6 +156,23 @@ export const ConfigPalette: FC = () => {
             />
           );
         })}
+      </div>
+    );
+  };
+
+  const renderRideHeightInput = () => {
+    return (
+      <div className="config-options">
+        <input
+          type="range"
+          min={-0.275}
+          max={0}
+          step={0.05}
+          value={suspensionHeight}
+          onChange={({ target }) =>
+            dispatch(setSuspensionHeight(Number(target.value)))
+          }
+        />
       </div>
     );
   };

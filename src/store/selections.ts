@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { Car } from 'models';
 
 interface SelectionsState {
@@ -8,6 +9,7 @@ interface SelectionsState {
   activeSeatColor: string | undefined;
   activeWheelColor: string | undefined;
   activeWindowTint: string | undefined;
+  suspensionHeight: number;
 }
 
 const selectionsSlice = createSlice({
@@ -19,6 +21,7 @@ const selectionsSlice = createSlice({
     activeSeatColor: undefined,
     activeWheelColor: undefined,
     activeWindowTint: undefined,
+    suspensionHeight: 0,
   } as SelectionsState,
   reducers: {
     setActiveCar: (state, action: PayloadAction<Car | undefined>) => {
@@ -42,6 +45,9 @@ const selectionsSlice = createSlice({
     setActiveWindowTint: (state, action: PayloadAction<string | undefined>) => {
       state.activeWindowTint = action.payload;
     },
+    setSuspensionHeight: (state, action: PayloadAction<number>) => {
+      state.suspensionHeight = action.payload;
+    },
   },
 });
 
@@ -54,6 +60,7 @@ export const {
   setActiveSeatColor,
   setActiveWheelColor,
   setActiveWindowTint,
+  setSuspensionHeight,
 } = actions;
 
 export default reducer;

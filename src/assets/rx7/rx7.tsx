@@ -53,7 +53,17 @@ export default function Model(props) {
     }
   };
 
+  const getSuspensionHeight = () => {
+    if (!props.suspensionHeight) {
+      return [0, 0, 0];
+    }
+
+    return [0, 0, props.suspensionHeight];
+  };
+
   const wheelAnnotationPosition = getWheelAnnotationPosition();
+
+  const loweredSuspension = getSuspensionHeight();
 
   return (
     <group {...props} dispose={null}>
@@ -61,26 +71,33 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_7.geometry}
           material={materials.material_0}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_9.geometry}
           material={materials.material_1}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_11.geometry}
           material={materials.material_2}
+          // position={loweredSuspension}
+          // Wheel nuts
         />
         <mesh
           geometry={nodes.Object_13.geometry}
           material={materials.material_3}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_15.geometry}
           material={materials.material_4}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_17.geometry}
           material={materials.material_5}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_19.geometry}
@@ -89,26 +106,32 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_21.geometry}
           material={materials.material_7}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_23.geometry}
           material={materials.material_8}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_25.geometry}
           material={materials.material_9}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_27.geometry}
           material={materials.material_10}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_29.geometry}
           material={materials.material_11}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_31.geometry}
           material={materials.material_12}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_33.geometry}
@@ -117,10 +140,12 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_35.geometry}
           material={materials.material_14}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_37.geometry}
           material={materials.material_15}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_39.geometry}
@@ -130,30 +155,37 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_41.geometry}
           material={materials.material_17}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_43.geometry}
           material={materials.material_18}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_45.geometry}
           material={materials.material_19}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_47.geometry}
           material={materials.material_20}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_49.geometry}
           material={materials.material_21}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_51.geometry}
           material={materials.material_22}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_53.geometry}
           material={materials.material_23}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_55.geometry}
@@ -163,26 +195,32 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_57.geometry}
           material={materials.material_25}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_59.geometry}
           material={materials.material_26}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_61.geometry}
           material={materials.material_27}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_63.geometry}
           material={materials.material_28}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_65.geometry}
           material={materials.material_29}
+          position={loweredSuspension}
         />
         <mesh
           geometry={nodes.Object_67.geometry}
           material={materials.material_30}
+          position={loweredSuspension}
         />
         {props.annotations.map((props, index) => {
           return <Annotation key={index} {...props} />;
