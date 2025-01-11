@@ -4,30 +4,30 @@ import { useDispatch } from 'react-redux';
 import { setControlsEnabled } from 'store/controls';
 import * as THREE from 'three';
 
-// export const ResponsiveCamera = () => {
-//   const targetWidth = 4;
+export const ResponsiveCamera = () => {
+  const targetWidth = 4;
 
-//   const { camera, size }: { camera: THREE.PerspectiveCamera; size: Size } =
-//     useThree();
+  const { camera, size }: { camera: THREE.PerspectiveCamera; size: Size } =
+    useThree();
 
-//   const updateCamera = () => {
-//     const aspect = size.width / size.height;
-//     const distance = camera.position.z; // Kamera távolság az objektumtól
-//     const fov = 2 * Math.atan(targetWidth / (2 * distance)) * (180 / Math.PI); // Radián -> fok
-//     camera.fov = fov / aspect; // Arányos FOV
-//     camera.updateProjectionMatrix(); // Frissítsd a kamera mátrixát
-//   };
+  const updateCamera = () => {
+    const aspect = size.width / size.height;
+    const distance = camera.position.z; // Kamera távolság az objektumtól
+    const fov = 2 * Math.atan(targetWidth / (2 * distance)) * (180 / Math.PI); // Radián -> fok
+    camera.fov = fov / aspect; // Arányos FOV
+    camera.updateProjectionMatrix(); // Frissítsd a kamera mátrixát
+  };
 
-//   useEffect(() => {
-//     updateCamera();
-//   }, []);
+  useEffect(() => {
+    updateCamera();
+  }, []);
 
-//   useEffect(() => {
-//     updateCamera();
-//   }, [camera, size, targetWidth]);
+  useEffect(() => {
+    updateCamera();
+  }, [camera, size, targetWidth]);
 
-//   return null; // Ez a komponens nem renderel semmit, csak frissíti a kamerát
-// };
+  return null; // Ez a komponens nem renderel semmit, csak frissíti a kamerát
+};
 
 export const CameraAnimation = () => {
   const dispatch = useDispatch();
