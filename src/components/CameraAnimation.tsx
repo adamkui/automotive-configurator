@@ -32,7 +32,7 @@ export const ResponsiveCamera = () => {
 export const CameraAnimation = () => {
   const dispatch = useDispatch();
   const { camera }: { camera: THREE.PerspectiveCamera } = useThree();
-  const targetFov = 10;
+  const targetFov = 20;
   const targetPosition = [30, 9.5, 34];
   const duration = 1.5; // Animáció időtartama másodpercben
   const animationRef = useRef(0);
