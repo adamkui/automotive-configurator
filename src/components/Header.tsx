@@ -49,7 +49,7 @@ export const Header: FC = () => {
           />
           <div className="header-car">
             <h1>{activeCar?.name}</h1>
-            <h5>{colorName}</h5>
+            <h4>{colorName}</h4>
           </div>
         </div>
         <div className="header-right">
