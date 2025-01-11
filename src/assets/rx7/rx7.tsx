@@ -15,9 +15,15 @@ import * as THREE from 'three';
 
 import { Annotation } from 'components';
 import { AnnotationData as AnnotationModel } from 'models';
+import { useAppSelector } from 'store';
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/rx7/rx7.gltf');
+  const { activeAnnotationIndex, showAnnotations } = useAppSelector(
+    ({ controlsSlice }) => controlsSlice
+  );
+
+  console.log(activeAnnotationIndex);
 
   // Body color
   materials.material_0.color = new THREE.Color(props.color);
@@ -35,6 +41,10 @@ export default function Model(props) {
   // Windows
   materials.material_28.color = new THREE.Color(props.windowTint);
 
+  const wheelAnnotationPosition =
+    showAnnotations && activeAnnotationIndex === 1 ? [2, 0, 0] : [0, 0, 0];
+
+  console.log(wheelAnnotationPosition);
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -105,6 +115,7 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_39.geometry}
           material={materials.material_16}
+          position={wheelAnnotationPosition}
         />
         <mesh
           geometry={nodes.Object_41.geometry}
@@ -137,6 +148,7 @@ export default function Model(props) {
         <mesh
           geometry={nodes.Object_55.geometry}
           material={materials.material_24}
+          position={wheelAnnotationPosition}
         />
         <mesh
           geometry={nodes.Object_57.geometry}

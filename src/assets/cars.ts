@@ -44,19 +44,20 @@ export const cars: Car[] = [
     annotations: [
       {
         index: 1,
-        position: { x: 3.1, y: -4.8125, z: -1 },
-        cameraPosition: { x: 35, y: 5, z: 0 },
+        // position: { x: 3.1, y: -4.8125, z: -1 },
+        position: { x: 4.75, y: -3.4, z: -2 },
+        // cameraPosition: { x: 35, y: 5, z: 0 },
+        cameraPosition: { x: 30, y: 4.5, z: 25 },
         label: 'Enkei wheels',
         description:
           'The 1992 Mazda RX-7 FD came with Enkei 16-inch wheels, 7 inches wide in the front and 8 inches wide in the rear, with a 4x100 mm bolt pattern and a +50 mm offset. The stock tires were 205/55R16 in the front and 225/50R16 in the rear. These wheels were designed to enhance both performance and style.',
       },
       {
         index: 2,
-        position: { x: 0, y: 0, z: 0 },
-        cameraPosition: { x: 35, y: 5, z: 0 },
-        label: 'Engine',
-        description:
-          'This will be a longer text. Lorem ipsum asdjkanb asjdn jk a sjkdnjknm, asj sjkldnjk jkn sdjjlsd .',
+        position: { x: -2.25, y: 7.25, z: -1.7 },
+        cameraPosition: { x: -15, y: 1, z: -35 },
+        label: 'Exhaust system',
+        description: `The RX-7 FD's stock exhaust features a dual layout with 2.5-inch stainless steel piping, a high-flow catalytic converter, and polished round tips, delivering a lightweight design and a distinct rotary engine tone. Aftermarket options, like larger cat-back systems or straight pipes, enhance flow, performance, and the iconic "brap-brap" sound.`,
       },
     ],
   },

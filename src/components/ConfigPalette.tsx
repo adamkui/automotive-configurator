@@ -29,6 +29,9 @@ export const ConfigPalette: FC = () => {
     activeWheelColor,
     activeWindowTint,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
+  const { showAnnotations } = useAppSelector(
+    ({ controlsSlice }) => controlsSlice
+  );
   const [activeTabIndex, setActiveTabIndex] = useState<number | undefined>(1);
 
   const options: { label: string }[] = [
@@ -184,6 +187,8 @@ export const ConfigPalette: FC = () => {
       </div>
     );
   };
+
+  if (showAnnotations) return null;
 
   return (
     <div className={'config-palette'}>
