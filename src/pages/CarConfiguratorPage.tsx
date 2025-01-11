@@ -1,11 +1,11 @@
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { FC, Suspense, useEffect, useMemo } from 'react';
+import { FC, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { TextureLoader } from 'three';
-import * as THREE from 'three';
 
 import { brakeCaliperColors, seatColors, wheelColors } from 'assets/cars';
+import concreteTexture from 'assets/concrete-texture.jpg';
 import {
   CameraAnimation,
   ConfigPalette,
@@ -19,8 +19,6 @@ import {
   setActiveSeatColor,
   setActiveWheelColor,
 } from 'store/selections';
-import concreteTexture from 'assets/concrete-texture.jpg';
-import { FocusCamera } from 'components/FocusCamera';
 
 export const CarConfiguratorPage: FC = () => {
   const {
@@ -30,8 +28,9 @@ export const CarConfiguratorPage: FC = () => {
     activeSeatColor,
     activeWheelColor,
   } = useAppSelector(({ selectionsSlice }) => selectionsSlice);
-  const { canRotate, controlsEnabled, showAnnotations, activeAnnotationIndex } =
-    useAppSelector(({ controlsSlice }) => controlsSlice);
+  const { canRotate, controlsEnabled } = useAppSelector(
+    ({ controlsSlice }) => controlsSlice
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,18 +63,6 @@ export const CarConfiguratorPage: FC = () => {
       </mesh>
     );
   };
-
-  const currentAnnotationLocation =
-    activeCar?.annotations?.[activeAnnotationIndex - 1]?.position;
-  const targetPosition = useMemo(
-    () =>
-      new THREE.Vector3(
-        currentAnnotationLocation?.x,
-        currentAnnotationLocation?.y,
-        currentAnnotationLocation?.z
-      ),
-    [currentAnnotationLocation]
-  );
 
   return (
     <>
