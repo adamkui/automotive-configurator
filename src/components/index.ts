@@ -1,5 +1,5 @@
 export * from './Annotation';
-export * from './Camera';
+export * from './CameraAnimation';
 export * from './CarSelector';
 export * from './ConfigPalette';
 export * from './Header';

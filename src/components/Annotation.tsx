@@ -56,7 +56,10 @@ export const Annotation = ({
   };
 
   return (
-    <Html position={new Vector3(position.x, position.y, position.z)}>
+    <Html
+      position={new Vector3(position.x, position.y, position.z)}
+      distanceFactor={15}
+    >
       {showAnnotations ? (
         <div className="annotation">
           <button className="annotation-circle" onClick={toggleAnnotation}>
