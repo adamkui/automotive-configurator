@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { FC, useState } from 'react';
 import { BiSolidHide } from 'react-icons/bi';
 import { HiAnnotation } from 'react-icons/hi';
+import { IoMdClose } from 'react-icons/io';
 import {
   IoArrowBack,
   IoInformationCircleSharp,
@@ -102,11 +103,19 @@ export const Header: FC = () => {
               onClick={setRotation}
             />
           )}
-          <IoInformationCircleSharp
-            size={32}
-            className="icon"
-            onClick={() => setShowMoreInformation(!showMoreInformation)}
-          />
+          {showMoreInformation ? (
+            <IoMdClose
+              size={32}
+              className="icon"
+              onClick={() => setShowMoreInformation(!showMoreInformation)}
+            />
+          ) : (
+            <IoInformationCircleSharp
+              size={32}
+              className="icon"
+              onClick={() => setShowMoreInformation(!showMoreInformation)}
+            />
+          )}
           {showAnnotations ? (
             <BiSolidHide size={32} className="icon" onClick={setAnnotations} />
           ) : (
