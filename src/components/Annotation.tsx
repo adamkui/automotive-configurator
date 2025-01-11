@@ -1,5 +1,6 @@
 import { Html } from '@react-three/drei';
-import { useEffect, useState } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from 'store';
@@ -19,10 +20,12 @@ export const Annotation = ({
   label,
   position,
 }: AnnotationProps) => {
+  const markerRef = useRef<any>(null);
   const dispatch = useDispatch();
-  const { showAnnotations, activeAnnotationIndex } = useAppSelector(
-    ({ controlsSlice }) => controlsSlice
-  );
+  const { controlsSlice, selectionsSlice } = useAppSelector((state) => state);
+
+  const { activeAnnotationIndex, showAnnotations } = controlsSlice;
+  const { activeCar } = selectionsSlice;
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -55,24 +58,46 @@ export const Annotation = ({
     setOpen(!isOpen);
   };
 
+  useEffect(() => {}, [showAnnotations, activeAnnotationIndex]);
+
+  const vec = new Vector3();
+
+  useFrame((state) => {
+    const targetPosition =
+      activeCar?.annotations?.[activeAnnotationIndex - 1].cameraPosition;
+
+    if (!showAnnotations || activeAnnotationIndex !== index || !targetPosition)
+      return;
+
+    const { x, y, z } = targetPosition;
+
+    state.camera.lookAt(markerRef.current?.position);
+    state.camera.position.lerp(vec.set(x, y, z), 0.01);
+    state.camera.updateProjectionMatrix();
+
+    return null;
+  });
+
   return (
-    <Html
-      position={new Vector3(position.x, position.y, position.z)}
-      distanceFactor={15}
-    >
-      {showAnnotations ? (
-        <div className="annotation">
-          <button className="annotation-circle" onClick={toggleAnnotation}>
-            {index}
-          </button>
-          {isOpen ? (
-            <div className="annotation-box">
-              <h3>{label}</h3>
-              <p>{description}</p>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-    </Html>
+    <mesh ref={markerRef}>
+      <Html
+        position={new Vector3(position.x, position.y, position.z)}
+        distanceFactor={15}
+      >
+        {showAnnotations ? (
+          <div className="annotation">
+            <button className="annotation-circle" onClick={toggleAnnotation}>
+              {index}
+            </button>
+            {isOpen ? (
+              <div className="annotation-box">
+                <h3>{label}</h3>
+                <p>{description}</p>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+      </Html>
+    </mesh>
   );
 };

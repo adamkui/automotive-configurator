@@ -41,4 +41,5 @@ export type AnnotationData = {
   label: string;
   description: string;
   position: { x: number; y: number; z: number };
+  cameraPosition: { x: number; y: number; z: number };
 };
